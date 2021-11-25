@@ -76,10 +76,16 @@ class cloudwatchlogs (
       }
 
       if $region {
-        file_line { 'region-on-awslogs':
+        file_line { 'default-on-awslogs':
+          path    => '/etc/awslogs/awscli.conf',
+          line    => '[default]',
+          match   => '\[default\]',
+          require => Package['awslogs'],
+        } -> file_line { 'region-on-awslogs':
           path    => '/etc/awslogs/awscli.conf',
           line    => "region = ${region}",
           match   => '^region\s*=',
+          after   => '[default]',
           notify  => Service[$service_name],
           require => Package['awslogs'],
         }
