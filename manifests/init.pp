@@ -60,6 +60,15 @@ class cloudwatchlogs (
         ensure => 'present',
       }
 
+      package { 'cwlogs':
+        ensure   => installed:
+        provider => pip
+      }
+      package { 'cwlogs':
+        ensure   => installed:
+        provider => pip3
+      }
+
       concat { '/etc/awslogs/awslogs.conf':
         ensure         => 'present',
         owner          => 'root',
