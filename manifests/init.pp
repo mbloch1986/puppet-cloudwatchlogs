@@ -60,11 +60,7 @@ class cloudwatchlogs (
         ensure => 'present',
       }
 
-      package { 'cwlogs':
-        ensure   => installed:
-        provider => pip
-      }
-      package { 'cwlogs':
+      package { 'awscli-cwlogs':
         ensure   => installed:
         provider => pip3
       }
