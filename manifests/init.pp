@@ -89,8 +89,6 @@ class cloudwatchlogs (
         } -> file_line { 'region-on-awslogs':
           path    => '/etc/awslogs/awscli.conf',
           line    => "region = ${region}",
-          match   => '^region\s*=',
-          after   => '[default]',
           notify  => Service[$service_name],
           require => Package['awslogs'],
         }
