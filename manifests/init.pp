@@ -61,8 +61,8 @@ class cloudwatchlogs (
       }
 
       package { 'awscli-cwlogs':
-        ensure   => installed:
-        provider => pip3
+        ensure   => installed,
+        provider => pip3,
       }
 
       concat { '/etc/awslogs/awslogs.conf':
