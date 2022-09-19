@@ -2,6 +2,9 @@
 ### Summary
 Small bugfix release.
 
+### Added
+- Add new parameters to manage state of the service
+
 #### Bugfixes
 - Force creation of symlink at `/var/awslogs/etc/conf` to prevent issues during upgrades.
 - Add appropriate `requires` based on OS for the main config.

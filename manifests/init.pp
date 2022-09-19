@@ -30,7 +30,9 @@ class cloudwatchlogs (
   $logging_config_file  = $::cloudwatchlogs::params::logging_config_file,
   $region               = $::cloudwatchlogs::params::region,
   $log_level            = $::cloudwatchlogs::params::log_level,
-  $logs                 = {}
+  $logs                 = {},
+  $service_enable       = $::cloudwatchlogs::params::service_enable,
+  $service_start        = $::cloudwatchlogs::params::service_start
 ) inherits cloudwatchlogs::params {
 
   validate_hash($logs)
@@ -95,8 +97,8 @@ class cloudwatchlogs (
       }
 
       service { $service_name:
-        ensure     => 'running',
-        enable     => true,
+        ensure     => $service_start,
+        enable     => $service_enable,
         hasrestart => true,
         hasstatus  => true,
         subscribe  => Concat['/etc/awslogs/awslogs.conf'],
@@ -179,8 +181,8 @@ class cloudwatchlogs (
       }
 
       service { $service_name:
-        ensure     => 'running',
-        enable     => true,
+        ensure     => $service_start,
+        enable     => $service_enable,
         hasrestart => true,
         hasstatus  => true,
         subscribe  => Concat['/etc/awslogs/awslogs.conf'],

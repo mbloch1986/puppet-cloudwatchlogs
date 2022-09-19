@@ -7,7 +7,7 @@ class cloudwatchlogs::params {
   $osname = $facts['os']['name']
   $osmajor = $facts['os']['release']['major']
   $oslong = "${osname}${osmajor}"
-  
+
   case $oslong {
     'Amazon2': { $service_name = 'awslogsd' }
     default: { $service_name = 'awslogs' }
@@ -15,4 +15,7 @@ class cloudwatchlogs::params {
   $logging_config_file = '/etc/awslogs/awslogs_dot_log.conf'
   $region = undef
   $log_level = undef
+
+  $service_enable = true
+  $service_start = true
 }
